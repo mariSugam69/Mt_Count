@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Muthi Count Finder</title>
+
+<style>
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Segoe UI, sans-serif;
+background:linear-gradient(135deg,#1f1c2c,#928dab);
+overflow:hidden;
+}
+
+/* Glass container */
+.container{
+width:360px;
+padding:35px;
+border-radius:20px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+text-align:center;
+color:white;
+}
+
+/* Title */
+h1{
+margin-bottom:25px;
+font-size:28px;
+transition:0.4s;
+}
+
+/* Input */
+input{
+width:100%;
+padding:12px;
+border:none;
+outline:none;
+border-radius:10px;
+font-size:16px;
+margin-bottom:20px;
+}
+
+/* Button */
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* Result */
+.result{
+margin-top:25px;
+font-size:40px;
+font-weight:bold;
+}
+
+/* Emoji animation */
+.emoji{
+position:absolute;
+font-size:30px;
+animation:pop 2s ease-out forwards;
+}
+
+@keyframes pop{
+0%{
+transform:scale(0);
+opacity:1;
+}
+50%{
+transform:scale(1.5);
+}
+100%{
+transform:translateY(-200px);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="title">Muthi Count Finder 💦</h1>
+
+<input type="text" id="name" placeholder="Enter your name">
+
+<button onclick="generate()">Result ✊</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+function generate(){
+
+let name=document.getElementById("name").value.trim();
+
+if(name===""){
+alert("Enter your name");
+return;
+}
+
+let first=name.charAt(0).toUpperCase();
+let ascii=first.charCodeAt(0);
+let length=name.length;
+
+let number=(ascii*length)%1000;
+number=number.toString().padStart(3,"0");
+
+document.getElementById("result").innerHTML=number;
+
+/* change title */
+document.getElementById("title").innerHTML="hila lo bhai mat ruko 😂";
+
+/* create emojis */
+for(let i=0;i<15;i++){
+
+let emoji=document.createElement("div");
+emoji.innerHTML="💦";
+emoji.classList.add("emoji");
+
+emoji.style.left=Math.random()*100+"vw";
+emoji.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(emoji);
+
+setTimeout(()=>{
+emoji.remove();
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
